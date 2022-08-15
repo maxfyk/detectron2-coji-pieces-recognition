@@ -19,8 +19,8 @@ from coji.trainer import Trainer
 
 def main(args):
     # Register coji dataset
-    register_coji_voc("coji_train", "datasets/coji", "train")
-    register_coji_voc("coji_test", "datasets/coji", "test")
+    register_coji_voc("geom-original-train", "datasets/geom-original", "train")
+    register_coji_voc("geom-original-test", "datasets/geom-original", "test")
 
     # Setup model configuration
     cfg = setup_cfg(args)

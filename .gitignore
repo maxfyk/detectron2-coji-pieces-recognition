@@ -10,4 +10,4 @@ __pycache__/
 *.class
 # Project dependant
 output/
-datasets/coji/images/*
+datasets/geom-original/images/*

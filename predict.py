@@ -31,7 +31,7 @@ def parse_args():
     ap.add_argument("--config-file",
                     required=True,
                     help="path to config file")
-    ap.add_argument("--confidence-threshold", type=float, default=0.5,
+    ap.add_argument("--confidence-threshold", type=float, default=0.6,
                     help="minimum score for instance predictions to be shown (default: 0.5)")
     ap.add_argument("opts", default=[], nargs=argparse.REMAINDER,
                     help="modify model config options using the command-line")
@@ -47,12 +47,12 @@ def main(args):
         args.opts.append('MODEL.RETINANET.SCORE_THRESH_TEST')
         args.opts.append(str(args.confidence_threshold))
 
-    dataset_name = "coji_test"
-    register_coji_voc(dataset_name, "datasets/coji", "test")
+    dataset_name = "geom-original-test"
+    register_coji_voc(dataset_name, "datasets/geom-original", "test")
     cfg = setup_cfg(args)
     predictor = DefaultPredictor(cfg)
 
-    img = cv2.imread("C:\\Users\\maxfyk\\Downloads\\photo_2022-08-12_16-24-37.jpg")
+    img = cv2.imread("C:\\Users\\maxfyk\\Downloads\\photo_2022-08-12_16-24-41.jpg")
     prediction = predictor(img)
     visualizer = Visualizer(img[:, :, ::-1],
                             metadata=MetadataCatalog.get(dataset_name),
@@ -61,7 +61,6 @@ def main(args):
     img = vis.get_image()[:, :, ::-1]
     im_pil = Image.fromarray(img)
     im_pil.show()
-
 
     cv2.destroyAllWindows()
 

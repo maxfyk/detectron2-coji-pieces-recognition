@@ -74,6 +74,7 @@ if __name__ == "__main__":
     from detectron2.utils.visualizer import Visualizer
     import argparse
 
+    style_name = 'geom-original'
     # Parse command line arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="train")
@@ -81,8 +82,8 @@ if __name__ == "__main__":
     ap.add_argument("--scale", type=float, default=1.0)
     args = ap.parse_args()
 
-    dataset_name = f"coji_{args.split}"
-    register_coji_voc(dataset_name, "datasets/coji", args.split)
+    dataset_name = f"{style_name}{args.split}"
+    register_coji_voc(dataset_name, f"datasets/{style_name}", args.split)
     dataset_dicts = DatasetCatalog.get(dataset_name)
     for d in random.sample(dataset_dicts, args.samples):
         img = cv2.imread(d["file_name"])
